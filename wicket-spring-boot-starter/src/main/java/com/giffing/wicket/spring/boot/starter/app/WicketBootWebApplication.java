@@ -73,6 +73,8 @@ public class WicketBootWebApplication extends AuthenticatedWebApplication {
 			logger.info("init-config: " + configuration.getClass().getName());
 			configuration.init(this);
 		}
+		
+		mountPage("login", LoginPage.class);
 
 	}
 	

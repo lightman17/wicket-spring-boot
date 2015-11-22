@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Import;
 
 import com.giffing.wicket.spring.boot.starter.configuration.CustomAnnotationBeanNameGenerator;
 import com.giffing.wicket.spring.boot.starter.configuration.WicketApplicationInitConfiguration;
+import com.giffing.wicket.spring.boot.starter.configuration.extensions.atmosphere.AtmosphereWebInitializer;
 import com.giffing.wicket.spring.boot.starter.web.WebInitializer;
 
 @Configuration

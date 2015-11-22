@@ -6,19 +6,22 @@ import javax.servlet.ServletException;
 
 import org.apache.wicket.protocol.http.WicketFilter;
 import org.apache.wicket.spring.SpringWebApplicationFactory;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.embedded.ServletContextInitializer;
 import org.springframework.context.annotation.Configuration;
 
-@Configuration
+@Configuration(value="wicketWebInitializer")
+@ConditionalOnMissingBean(name="wicketWebInitializer")
 public class WebInitializer implements ServletContextInitializer {
 
 	@Override
 	public void onStartup(ServletContext sc) throws ServletException {
-		FilterRegistration filter = sc.addFilter("wicket-filter", WicketFilter.class);
-		filter.setInitParameter(WicketFilter.APP_FACT_PARAM, SpringWebApplicationFactory.class.getName());
-		filter.setInitParameter("applicationBean", "wicketBootWebApplication");
-		filter.setInitParameter(WicketFilter.FILTER_MAPPING_PARAM, "/*");
-		filter.addMappingForUrlPatterns(null, false, "/*");
+		
+//		FilterRegistration filter = sc.addFilter("wicket-filter", WicketFilter.class);
+//		filter.setInitParameter(WicketFilter.APP_FACT_PARAM, SpringWebApplicationFactory.class.getName());
+//		filter.setInitParameter("applicationBean", "wicketBootWebApplication");
+//		filter.setInitParameter(WicketFilter.FILTER_MAPPING_PARAM, "/*");
+//		filter.addMappingForUrlPatterns(null, false, "/*");
 
 	}
 

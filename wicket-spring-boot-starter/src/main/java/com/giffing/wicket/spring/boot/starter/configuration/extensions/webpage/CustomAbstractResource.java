@@ -3,14 +3,15 @@ package com.giffing.wicket.spring.boot.starter.configuration.extensions.webpage;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.Serializable;
 
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
+import org.apache.wicket.core.util.resource.UrlResourceStream;
 import org.apache.wicket.request.resource.IResource;
 import org.apache.wicket.request.resource.ResourceReference;
+import org.apache.wicket.request.resource.caching.IStaticCacheableResource;
+import org.apache.wicket.util.resource.IResourceStream;
 import org.springframework.core.io.Resource;
-import org.wicketstuff.annotation.mount.MountPath;
 
 public class CustomAbstractResource extends ResourceReference {
 	
@@ -29,7 +30,7 @@ public class CustomAbstractResource extends ResourceReference {
 	    return new InputStreamResource(resource);
 	}
 
-	private static class InputStreamResource implements IResource {
+	private static class InputStreamResource implements IResource, IStaticCacheableResource {
 
 		private static final long serialVersionUID = 1L;
 		
@@ -51,9 +52,28 @@ public class CustomAbstractResource extends ResourceReference {
 			}
 	    }
 
+		@Override
+		public boolean isCachingEnabled() {
+			return false;
+		}
+
+		@Override
+		public Serializable getCacheKey() {
+			try {
+				return resource.getURI().toString();
+			} catch (IOException e) {
+				throw new IllegalStateException(e);
+			}
+		}
+
+		@Override
+		public IResourceStream getResourceStream() {
+			return null;
+		}
+
 	}
 	
-	public String getFilename(){
+	public String getRelativePath(){
 		String filename = this.resource.getFilename();
 		try {
 			String[] split = this.resource.getURI().toString().split("wicket-static");

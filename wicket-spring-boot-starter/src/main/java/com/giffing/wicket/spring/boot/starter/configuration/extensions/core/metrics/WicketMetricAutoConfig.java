@@ -152,7 +152,7 @@ public class WicketMetricAutoConfig implements WicketApplicationInitConfiguratio
 
 		private TimeUnit convertDuratiosTo = TimeUnit.MICROSECONDS;
 
-		private String url;
+		private String url = "127.0.0.1";
 		
 		private Integer port = 2003;
 

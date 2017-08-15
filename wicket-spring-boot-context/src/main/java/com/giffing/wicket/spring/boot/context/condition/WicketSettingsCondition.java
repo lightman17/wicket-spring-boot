@@ -27,7 +27,7 @@ public class WicketSettingsCondition extends SpringBootCondition {
 		Map<String, Object> attributes = metadata
 				.getAnnotationAttributes(ConditionalOnWicket.class.getName());
 		Range range = (Range) attributes.get("range");
-		int expectedVersion = (int) attributes.get("value");
+		Integer expectedVersion = (Integer) attributes.get("value");
 		String[] splittedWicketVersion = wicketVersion.split("\\.");
 		int majorWicketVersion = Integer.valueOf(splittedWicketVersion[0]);
 		return getMatchOutcome(range, majorWicketVersion, expectedVersion);

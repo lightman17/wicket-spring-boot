@@ -1,6 +1,7 @@
 package com.giffing.wicket.spring.boot.example.web.pages.errors;
 
-import org.springframework.boot.autoconfigure.web.ErrorController;
+
+import org.springframework.boot.autoconfigure.web.servlet.error.ErrorController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
